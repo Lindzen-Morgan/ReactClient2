@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import GenresPage from './GenresPage';
 import MoviesPage from './MoviesPage';
 import PeoplePage from './PeoplePage';
-import PersonDetailsPage from './PersonDetailsPage'; // Make sure to import PersonDetailsPage
+import PersonDetailsPage from './PersonDetailsPage';
 
 function App() {
   return (
