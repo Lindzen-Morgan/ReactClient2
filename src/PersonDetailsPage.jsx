@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; // Import useParams
+import CreateMovieForm from './CreateMovieForm'; // Import CreateMovieForm
+import axios from 'axios';
 
 function PersonDetailsPage() {
   const { id } = useParams();
@@ -13,17 +15,12 @@ function PersonDetailsPage() {
     // Fetch person details by ID and setGenres and setMovies accordingly.
     async function fetchPersonDetails() {
       try {
-        const response = await fetch(`https://localhost:7155/api/person/${id}`);
-        if (response.ok) {
-          const data = await response.json();
-          setPerson(data);
-          setGenres(data.genres);
-          setMovies(data.movies);
-        } else {
-          // Handle errors
-        }
+        const response = await axios.get(`https://localhost:7155/api/person/${id}`);
+        setPerson(response.data);
+        setGenres(response.data.genres);
+        setMovies(response.data.movies);
       } catch (error) {
-        // Handle network errors
+        // Handle errors
       }
     }
 
@@ -34,15 +31,13 @@ function PersonDetailsPage() {
     e.preventDefault();
     // Make an API request to create a new movie
     try {
-      const response = await fetch(`https://localhost:7155/api/movies`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ title: movieTitle, rating: movieRating, personId: id }),
+      const response = await axios.post('https://localhost:7155/api/movies', {
+        title: movieTitle,
+        rating: movieRating,
+        personId: id,
       });
 
-      if (response.ok) {
+      if (response.status === 201) {
         // Handle success (maybe update the list of movies)
         // Clear the input fields
         setMovieTitle('');
