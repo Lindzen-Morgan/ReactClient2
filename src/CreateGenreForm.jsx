@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function CreateGenreForm() {
   const [genreName, setGenreName] = useState('');
 
-  const handleGenreSubmit = (e) => {
+  const handleGenreSubmit = async (e) => {
     e.preventDefault();
 
-    // Add code here to submit the genre data to your API
-    // You can use Axios or fetch for making API requests
+    try {
+      const response = await axios.post('/api/Genres/Create', {
+        name: genreName,
+      });
 
-    // After submission, you can clear the form fields:
-    setGenreName('');
+      if (response.status === 200) {
+        // Handle success
+        // Clear the input field
+        setGenreName('');
+      } else {
+        // Handle errors
+      }
+    } catch (error) {
+      // Handle network errors
+    }
   };
 
   return (

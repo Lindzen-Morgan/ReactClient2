@@ -1,18 +1,37 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import Axios
 
 function CreateMovieForm() {
   const [movieTitle, setMovieTitle] = useState('');
   const [movieRating, setMovieRating] = useState('');
 
-  const handleMovieSubmit = (e) => {
+  const handleMovieSubmit = async (e) => {
     e.preventDefault();
 
-    // Add code here to submit the movie data to your API
-    // You can use Axios or fetch for making API requests
+    // Create a movie object from the form data
+    const newMovie = {
+      title: movieTitle,
+      rating: parseFloat(movieRating), // Parse to a float
+    };
 
-    // After submission, you can clear the form fields:
-    setMovieTitle('');
-    setMovieRating('');
+    try {
+      // Send a POST request to API
+      const response = await axios.post('https://localhost:7155/api/movies', newMovie);
+
+      if (response.status === 201) {
+        // Handle success
+        console.log('Movie created successfully');
+        // Clear the form fields
+        setMovieTitle('');
+        setMovieRating('');
+      } else {
+        // Handle errors
+        console.error('Failed to create the movie');
+      }
+    } catch (error) {
+      // Handle network errors
+      console.error('Network error:', error);
+    }
   };
 
   return (
