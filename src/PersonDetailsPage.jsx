@@ -12,7 +12,7 @@ function PersonDetailsPage() {
   const [movieRating, setMovieRating] = useState('');
 
   useEffect(() => {
-    // Fetch person details by ID and setGenres and setMovies accordingly.
+    // Fetch person details by ID and setGenres and setMovies.
     async function fetchPersonDetails() {
       try {
         const response = await axios.get(`https://localhost:7155/api/person/${id}`);

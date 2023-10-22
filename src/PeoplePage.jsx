@@ -11,7 +11,7 @@ function PeoplePage() {
   const [movieRatings, setMovieRatings] = useState([]);
 
   useEffect(() => {
-    // Fetch the list of people from the API when the component mounts
+    // Fetch the list of people from the API
     axios.get('https://localhost:7155/api/people')
       .then((response) => {
         setPeople(response.data);
@@ -22,7 +22,7 @@ function PeoplePage() {
   }, []);
 
   useEffect(() => {
-    // Fetch additional details for the selected person when selectedPerson changes
+    // Fetch additional details for the selected person when selectedPerson
     if (selectedPerson) {
       // Fetch associated genres
       axios.get(`https://localhost:7155/api/genres/${selectedPerson.id}`)

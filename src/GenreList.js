@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { genresAPI } from './api'; // Import the genresAPI from your api.js file
+import { genresAPI } from './api'; // Import genresAPI from api.js file
 
 function GenreList() {
   const [genres, setGenres] = useState([]);

@@ -5,7 +5,7 @@ function Homepage() {
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
-    // Fetch the list of people from your API
+    // Fetch the list of people from the API
     axios.get("https://localhost:7155/api/people")
       .then((response) => {
         setPeople(response.data);

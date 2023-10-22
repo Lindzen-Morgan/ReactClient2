@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { personsAPI } from './api'; // Import the personsAPI from your api.js file
+import { personsAPI } from './api'; // Import personsAPI from api.js file
 
 function PersonList() {
   const [persons, setPersons] = useState([]);

@@ -6,7 +6,7 @@ function MovieList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // When the component mounts, fetch the list of movies from your ASP.NET Core backend
+    // When the component mounts, fetch the list of movies from Filmsystemet4
     moviesAPI.getAllMovies()
       .then((response) => {
         setMovies(response.data);
