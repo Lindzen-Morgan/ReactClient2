@@ -1,8 +1,11 @@
-# React + Vite
+Using: React Express.JS Axios
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The application does the following:
 
-Currently, two official plugins are available:
+Built with React, providing a user-friendly interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application makes HTTP requests to the backend using Axios to interact with my API (Filmsystemet4)
+
+I have created separate components for each es andmajor feature, such as creating genr movies, listing movies and people, and displaying person details.
+
+I have utilized React Router to handle navigation between different parts of the application.
