@@ -1,21 +1,15 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import GenresPage from './GenresPage';
-import MoviesPage from './MoviesPage';
-import PeoplePage from './PeoplePage';
-import PersonDetailsPage from './PersonDetailsPage';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Homepage from "./components/Homepage";
+import PersonDetails from "./PersonDetailsPage";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/person/:id" component={PersonDetailsPage} />
-          <Route path="/genres" component={GenresPage} />
-          <Route path="/movies" component={MoviesPage} />
-          <Route path="/" component={PeoplePage} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route path="/person/:id" component={PersonDetails} />
+      </Switch>
     </Router>
   );
 }

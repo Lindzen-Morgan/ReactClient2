@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import CreateGenreForm from './CreateGenreForm';
-import CreateMovieForm from './CreateMovieForm'; // Import CreateMovieForm here
+import CreateMovieForm from './CreateMovieForm';
 import axios from 'axios';
 
 function PeoplePage() {
   const [people, setPeople] = useState([]);
   const [selectedPerson, setSelectedPerson] = useState(null);
+  const [genres, setGenres] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [movieRatings, setMovieRatings] = useState([]);
 
   useEffect(() => {
     // Fetch the list of people from the API when the component mounts
@@ -21,7 +24,32 @@ function PeoplePage() {
   useEffect(() => {
     // Fetch additional details for the selected person when selectedPerson changes
     if (selectedPerson) {
-      // Fetch details for the selected person, such as genres, movies, and ratings
+      // Fetch associated genres
+      axios.get(`https://localhost:7155/api/genres/${selectedPerson.id}`)
+        .then((response) => {
+          setGenres(response.data);
+        })
+        .catch((error) => {
+          // Handle errors here
+        });
+
+      // Fetch associated movies
+      axios.get(`https://localhost:7155/api/movies/${selectedPerson.id}`)
+        .then((response) => {
+          setMovies(response.data);
+        })
+        .catch((error) => {
+          // Handle errors here
+        });
+
+      // Fetch associated movie ratings
+      axios.get(`https://localhost:7155/api/movieRatings/${selectedPerson.id}`)
+        .then((response) => {
+          setMovieRatings(response.data);
+        })
+        .catch((error) => {
+          // Handle errors here
+        });
     }
   }, [selectedPerson]);
 
@@ -46,23 +74,29 @@ function PeoplePage() {
           <h2>Details for {selectedPerson.name}</h2>
           <h3>Genres:</h3>
           <ul>
-            {/* Display associated genres */}
+            {genres.map((genre) => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
           </ul>
 
           <h3>Movies:</h3>
           <ul>
-            {/* Display associated movies */}
+            {movies.map((movie) => (
+              <li key={movie.id}>{movie.title}</li>
+            ))}
           </ul>
 
           <h3>Movie Ratings:</h3>
           <ul>
-            {/* Display associated movie ratings */}
+            {movieRatings.map((rating) => (
+              <li key={rating.id}>{rating.rating}</li>
+            ))}
           </ul>
         </div>
       )}
 
       <CreateGenreForm />
-      <CreateMovieForm /> {/* Use CreateMovieForm here */}
+      <CreateMovieForm />
     </div>
   );
 }
