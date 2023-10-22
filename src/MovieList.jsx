@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { moviesAPI } from './api'; 
+import { moviesAPI } from './api';  
 import axios from 'axios';
 function MovieList() {
   const [movies, setMovies] = useState([]);
